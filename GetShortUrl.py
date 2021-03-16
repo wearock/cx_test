@@ -2,6 +2,8 @@ import requests
 
 class GetShortUrl():
 
+    ## Get the shortUrl
+
     @staticmethod
     def get_short_url_post(self):
 
