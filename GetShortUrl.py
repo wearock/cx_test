@@ -1,25 +1,24 @@
 import requests
 
+from configuration.constans import ShortUrlConstants
+
 class GetShortUrl():
 
     ## Get the shortUrl
 
     @staticmethod
     def get_short_url_post(self):
+        """ Returns short_url
+        """
+        response = requests.post(url=ShortUrlConstants.POST_SHORT_URL,
+                                 data=ShortUrlConstants.POST_SHORT_URL_BODY,
+                                 headers=ShortUrlConstants.POST_SHORT_URL_HEADERS, verify=False)
 
-        url = "https://stg.ib4.me"
+        assert response.status_code == 200, 'r.status_code is not 200'
 
-        bearer_token = "Bearer 8900D215-88A9-DBC9-8C50-290A89UU53C6"
-        headers = {
-            "Authorization": bearer_token,
-            "Content-Type": "application/json"
-        }
+        short_url = response.json().get("short_url")
 
-        data = "{ \"original_url\":\"https://www.google.com\" }"
-
-        r = requests.post(url=url, data=data, headers=headers, verify=False)
-
-        return r
+        return short_url
 
 
 
